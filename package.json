@@ -1,0 +1,12 @@
+{
+  "name": "webcrawler",
+  "version": "1.0.0",
+  "description": "NodeJS Implementation of WebCrawler Software",
+  "main": "webcrawler.js",
+  "author": "Cloud Performer (cgary@cloudperformer.com)",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.10.0",
+    "crawler": "^1.0.5"
+  }
+}
