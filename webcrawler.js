@@ -20,6 +20,8 @@ let c = new crawler({
     callback: function(error,res,done){
         let $ = res.$;
         let newUrlArrayToCrawl = [];
+        //here we are going to follow all of the 'a' links to 
+        //other pages within the site.
         try{
             $('a').each(function(){
                 let hrefPart = $(this).attr('href');
@@ -41,8 +43,20 @@ let c = new crawler({
                 console.log('Non HTML link hit... Moving on...');
             }
         }
+        //now we will attempt to get any login forms out of the page
+        try{
+            let formAction;
+            $("form[action*='login']").each(function(){
+                $(this).find('#fieldemail').val();
+                formAction = $(this).attr('action');
+            });
+        }catch(e){
+
+        }
+
+        //if other links are found, add them to the crawler.
         if(newUrlArrayToCrawl.length > 0){
-            c.queue(newUrlArrayToCrawl);
+            //c.queue(newUrlArrayToCrawl);
         }
         
         let outputString = 'Page Count: ' + numberOfLinks + ' - ' + res.request.uri.format();
